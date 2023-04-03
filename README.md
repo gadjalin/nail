@@ -1,6 +1,6 @@
 # Nail
 
-&nbsp;&nbsp; *"Because all you ever had was a hammer."*
+&nbsp;&nbsp; *"Because all you have is a hammer."*
 
 ---
 
