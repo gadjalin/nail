@@ -1,3 +1,7 @@
+// Signal.hpp
+// Gaétan "Gad" Jalin
+// 6 Feb 2021
+// See end of file for complete licence description
 #ifndef NAIL_SIGNAL_HPP
 #define NAIL_SIGNAL_HPP
 
@@ -32,10 +36,6 @@ namespace nail
 
 #endif // NAIL_SIGNAL_HPP
 /**
- * Signal.hpp
- * 6 Feb 2021
- * Gaétan "Gad" Jalin
- *
  * Copyright (C) 2020-2023 Gaétan Jalin
  *
  * This software is provided 'as-is', without any express or implied
