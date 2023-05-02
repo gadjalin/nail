@@ -1,3 +1,7 @@
+// Listener.hpp
+// Gaétan "Gad" Jalin
+// 6 Feb 2021
+// See end of file for complete licence description
 #ifndef NAIL_LISTENER_HPP
 #define NAIL_LISTENER_HPP
 
@@ -36,10 +40,6 @@ namespace nail
 
 #endif // NAIL_LISTENER_HPP
 /**
- * Listener.hpp
- * 6 Feb 2021
- * Gaétan "Gad" Jalin
- *
  * Copyright (C) 2020-2023 Gaétan Jalin
  *
  * This software is provided 'as-is', without any express or implied
