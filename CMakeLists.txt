@@ -64,7 +64,6 @@ TARGET_COMPILE_DEFINITIONS(nail PRIVATE
 TARGET_INCLUDE_DIRECTORIES(nail PUBLIC
                            "${INCLUDE_DIR}"
                            "${DEPS_DIR}/fmt/include"
-                           "${DEPS_DIR}/glm"
                            "${PROJECT_BINARY_DIR}")
 
 TARGET_INCLUDE_DIRECTORIES(nail PRIVATE
@@ -75,7 +74,6 @@ TARGET_INCLUDE_DIRECTORIES(nail SYSTEM PRIVATE
                            $<$<PLATFORM_ID:Linux,Darwin>:/usr/local/include>)
 
 TARGET_SOURCES(nail PRIVATE
-               ${DEPS_DIR}/glm/glm/detail/glm.cpp)
 
 TARGET_LINK_DIRECTORIES(nail PRIVATE
                         $<$<PLATFORM_ID:Linux,Darwin>:/usr/lib>
