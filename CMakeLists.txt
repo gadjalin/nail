@@ -74,6 +74,7 @@ TARGET_INCLUDE_DIRECTORIES(nail SYSTEM PRIVATE
                            $<$<PLATFORM_ID:Linux,Darwin>:/usr/local/include>)
 
 TARGET_SOURCES(nail PRIVATE
+               ${CPP_DIR}/Debug/Assert.cpp)
 
 TARGET_LINK_DIRECTORIES(nail PRIVATE
                         $<$<PLATFORM_ID:Linux,Darwin>:/usr/lib>
