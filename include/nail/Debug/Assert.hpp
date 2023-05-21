@@ -35,8 +35,8 @@ namespace nail
    void Assert(EvaluatorFn const& evaluator, SourceLocation const& location, char const* expression, HandlerType handler, Args&&... args) noexcept;
 }
 
-#define ASSERT(expr, ...)  zl::Assert([&](void) -> bool { return (expr); }, CURRENT_SOURCE_LOCATION, #expr, __VA_ARGS__)
-#define ZL_ASSERT(expr, message) ASSERT(expr, zl::AssertHandler{}, message)
+#define ASSERT(expr, ...)  nail::Assert([&](void) -> bool { return (expr); }, CURRENT_SOURCE_LOCATION, #expr, __VA_ARGS__)
+#define NAIL_ASSERT(expr, message) ASSERT(expr, nail::AssertHandler{}, message)
 
 #include "Assert.inl"
 
