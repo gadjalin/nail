@@ -7,36 +7,55 @@
 
 // Inspired by https://www.foonathan.net/2016/09/assertions/
 
-#include <type_traits>
 #include <cstdlib>
+#include <type_traits>
 
 #include "nail/defines.hpp"
+#include "nail/debug.hpp"
+
+// Generic macro
+#define NAIL_ASSERT(expression, handlerType, ...) \
+    nail::Assert<handlerType>([&](void) -> bool { return (expression); }, CURRENT_SOURCE_LOCATION, #expression, __VA_ARGS__)
+
+// For debug assertions, only evaluated when NDEBUG is not defined
+#if defined(NDEBUG)
+    #define NAIL_DEBUG_ASSERT(expression, message) \
+        NAIL_ASSERT(expression, nail::DisabledAssertHandler, message)
+#else
+    #define NAIL_DEBUG_ASSERT(expression, message) \
+        NAIL_ASSERT(expression, nail::EnabledAssertHandler, message)
+#endif
+
+// Always active, wether build type is debug or release
+#define NAIL_ALWAYS_ASSERT(expression, message) NAIL_ASSERT(expression, nail::EnabledAssertHandler, message)
 
 namespace nail
 {
-   class NAIL_API AssertHandler
-   {
-   public:
-      #if defined(NDEBUG)
-         static constexpr const bool enabled = false;
-      #else
-         static constexpr const bool enabled = true;
-      #endif
+    // If Enabled
+    template<typename Handler, typename Evaluator, typename... Args>
+    auto Assert(Evaluator const& evaluator, SourceLocation const& location,
+                char const* expression, Args&&... args) noexcept -> std::enable_if_t<Handler::enabled>;
 
-      [[noreturn]] void handle(SourceLocation const& location, char const* expression, char const* message = nullptr) noexcept;
-   };
+    // If Disabled
+    template<typename Handler, typename Evaluator, typename... Args>
+    auto Assert(Evaluator const& evaluator, SourceLocation const& location,
+                char const* expression, Args&&... args) noexcept -> std::enable_if_t<not Handler::enabled>;
 
-   // Assert enabled
-   template<typename EvaluatorFn, typename HandlerType, typename... Args, std::enable_if_t<HandlerType::enabled, int> = 0>
-   void Assert(EvaluatorFn const& evaluator, SourceLocation const& location, char const* expression, HandlerType handler, Args&&... args) noexcept;
+    class NAIL_API EnabledAssertHandler
+    {
+    public:
+        static constexpr bool enabled = true;
+ 
+        [[noreturn]]
+        static void Handle(SourceLocation const& location, char const* expression, char const* message) noexcept;
+    };
 
-   // Assert disabled
-   template<typename EvaluatorFn, typename HandlerType, typename... Args, std::enable_if_t<!HandlerType::enabled, int> = 0>
-   void Assert(EvaluatorFn const& evaluator, SourceLocation const& location, char const* expression, HandlerType handler, Args&&... args) noexcept;
+    class DisabledAssertHandler
+    {
+    public:
+        static constexpr bool enabled = false;
+    };
 }
-
-#define ASSERT(expr, ...)  nail::Assert([&](void) -> bool { return (expr); }, CURRENT_SOURCE_LOCATION, #expr, __VA_ARGS__)
-#define NAIL_ASSERT(expr, message) ASSERT(expr, nail::AssertHandler{}, message)
 
 #include "Assert.inl"
 

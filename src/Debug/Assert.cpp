@@ -1,10 +1,26 @@
 #include "nail/Debug/Assert.hpp"
 
-[[noreturn]] void nail::AssertHandler::handle(SourceLocation const& location, char const* expression, char const* message) noexcept
+#include <iostream>
+#include "nail/crash.hpp"
+
+namespace nail
 {
-    //TODO fix this
-//   Console::Trace("{0}::{1} ({2}) : Assertion failed \"{3}\" : {4}",
-//                  location.file, location.function, location.line, expression, (message ? message : "No more information"));
-   std::abort();
+    [[noreturn]]
+    void EnabledAssertHandler::Handle(
+        SourceLocation const& location,
+        char const* expression,
+        char const* message) noexcept
+    {
+        try
+        {
+            std::cerr
+                << "Assertion has failed: " << message << "\n"
+                << "\tIn " << location.file << "::" << location.function << ", line " << location.line << "\n"
+                << "\t(" << expression << ")"
+                << std::endl;
+        } catch (...) {}
+
+        nail::crash();
+    }
 }
 
