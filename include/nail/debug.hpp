@@ -1,24 +1,34 @@
-// nail.hpp
-// 27 Nov 2020
+// debug.hpp
+// 21 May 2023
 // Gaétan "Gad" Jalin
 // See end of file for complete licence description
-#ifndef NAIL_HPP
-#define NAIL_HPP
+#ifndef NAIL_DEBUG_HPP
+#define NAIL_DEBUG_HPP
 
-#include <nail/platform.hpp>
-#include <nail/defines.hpp>
-#include <nail/version.hpp>
-#include <nail/crash.hpp>
-#include <nail/debug.hpp>
+#if defined(__clang__)
+    #define __FILENAME__ __FILE_NAME__
+#elif defined(_WIN32)
+    #define __FILENAME__ \
+        (std::string_view(__FILE__).find_last_of('\\') != std::string_view::npos ? \
+        (char const*) __FILE__ + std::string_view(__FILE__).find_last_of('\\') + 1 : __FILE__)
+#else
+    #define __FILENAME__ \
+        (std::string_view(__FILE__).find_last_of('/') != std::string_view::npos ? \
+        (char const*) __FILE__ + std::string_view(__FILE__).find_last_of('/') + 1 : __FILE__)
+#endif
 
-#include <nail/Debug/Assert.hpp>
+// TODO: Cpp20 std::source_location
+struct SourceLocation
+{
+    char const* file;
+    unsigned int line;
+    char const* function;
+};
 
-#endif // NAIL_HPP
+#define CURRENT_SOURCE_LOCATION SourceLocation{__FILENAME__, static_cast<unsigned int>(__LINE__), __func__ }
+
+#endif // NAIL_DEBUG_HPP
 /**
- * nail.hpp
- * 27 Nov 2020
- * Gaétan "Gad" Jalin
- *
  * Copyright (C) 2020-2023 Gaétan Jalin
  *
  * This software is provided 'as-is', without any express or implied
@@ -39,4 +49,3 @@
  *
  *    3. This notice may not be removed or altered from any source distribution.
  **/
-
