@@ -1,8 +1,6 @@
 #ifndef NAIL_OBSERVER_HPP
 #define NAIL_OBSERVER_HPP
 
-#include "nail/defines.hpp"
-
 namespace nail
 {
     template<typename Fn>
