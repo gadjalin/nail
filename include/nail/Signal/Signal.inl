@@ -13,8 +13,7 @@ inline void nail::Signal<Return (Args...)>::quit(Listener& listener)
 template<typename Return, typename... Args>
 inline void nail::Signal<Return (Args...)>::emit(Args&&... args)
 {
-    auto listeners = m_listeners;
-    for (auto& listener : listeners)
+    for (auto& listener : m_listeners)
         listener->update(std::forward<Args>(args)...);
 }
 

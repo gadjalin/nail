@@ -19,13 +19,13 @@ inline void nail::EventQueue<Event>::dispatch(Event* event)
 }
 
 template<typename Event>
-inline void nail::EventQueue<Event>::subscribe(EventSubscriber<Event>& subscriber)
+inline void nail::EventQueue<Event>::subscribe(Subscriber& subscriber)
 {
     m_subscribers.insert(&subscriber);
 }
 
 template<typename Event>
-inline void nail::EventQueue<Event>::unsubscribe(EventSubscriber<Event>& subscriber)
+inline void nail::EventQueue<Event>::unsubscribe(Subscriber& subscriber)
 {
     m_subscribers.erase(&subscriber);
 }

@@ -7,7 +7,6 @@
 
 #include <unordered_set>
 
-#include "nail/defines.hpp"
 #include "nail/Signal/Observer.hpp"
 
 namespace nail
@@ -19,6 +18,7 @@ namespace nail
     class Signal<Return (Args...)>
     {
         using Listener = nail::Observer<Return (Args...)>;
+
     public:
         void listen(Listener& listener);
         void quit(Listener& listener);
