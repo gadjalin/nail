@@ -12,6 +12,7 @@
 #include <nail/debug.hpp>
 
 #include <nail/Debug/Assert.hpp>
+#include <nail/Debug/Tee.hpp>
 
 #endif // NAIL_HPP
 /**
