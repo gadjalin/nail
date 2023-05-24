@@ -7,14 +7,14 @@
 
 #include <functional>
 
-#include "nail/defines.hpp"
-
 namespace nail
 {
     template<typename Event>
     class EventSubscriber
     {
+        // TODO: Find lighter alternative to std::function
         using Callback = std::function<void (Event&)>;
+
     public:
         void operator()(Event& event) const;
 

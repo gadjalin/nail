@@ -1,7 +1,7 @@
 template<typename Event>
 inline void nail::EventQueue<Event>::push(Event&& event)
 {
-    m_queue.push_back(std::move(std::make_unique<Event>(std::move(event))));
+    m_queue.push_back(std::make_unique<Event>(std::move(event)));
 }
 
 template<typename Event>
@@ -15,17 +15,17 @@ template<typename Event>
 inline void nail::EventQueue<Event>::dispatch(Event* event)
 {
     for (auto& subscriber : m_subscribers)
-        (*subscriber)(*event);
+        std::invoke(*subscriber, *event);
 }
 
 template<typename Event>
-inline void nail::EventQueue<Event>::subscribe(Subscriber& subscriber)
+inline void nail::EventQueue<Event>::subscribe(EventSubscriber<Event>& subscriber)
 {
     m_subscribers.insert(&subscriber);
 }
 
 template<typename Event>
-inline void nail::EventQueue<Event>::unsubscribe(Subscriber& subscriber)
+inline void nail::EventQueue<Event>::unsubscribe(EventSubscriber<Event>& subscriber)
 {
     m_subscribers.erase(&subscriber);
 }
