@@ -7,7 +7,6 @@
 
 #include <functional>
 
-#include "nail/defines.hpp"
 #include "nail/Signal/Observer.hpp"
 
 namespace nail
@@ -18,7 +17,9 @@ namespace nail
     template<typename Return, typename... Args>
     class Listener<Return (Args...)> : public Observer<Return (Args...)>
     {
+        // TODO: Find lighter alternative to std::function
         using Callback = std::function<Return (Args...)>;
+
     public:
         virtual Return update(Args&&... args) override;
 
