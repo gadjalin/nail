@@ -14,6 +14,9 @@
 #include <nail/Debug/Assert.hpp>
 #include <nail/Debug/Tee.hpp>
 
+#include <nail/Event/EventQueue.hpp>
+#include <nail/Event/EventSubscriber.hpp>
+
 #endif // NAIL_HPP
 /**
  * nail.hpp

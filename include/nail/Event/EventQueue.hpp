@@ -6,10 +6,10 @@
 #define NAIL_EVENT_HPP
 
 #include <unordered_set>
+#include <memory>
+#include <utility>
 #include <vector>
-#include <iostream>
 
-#include "nail/defines.hpp"
 #include "nail/Event/EventSubscriber.hpp"
 
 namespace nail
@@ -17,20 +17,19 @@ namespace nail
     template<typename Event>
     class EventQueue
     {
-        using Subscriber = EventSubscriber<Event>;
     public:
         void push(Event&& event);
         void process();
 
-        void subscribe(Subscriber& subscriber);
-        void unsubscribe(Subscriber& subscriber);
+        void subscribe(EventSubscriber<Event>& subscriber);
+        void unsubscribe(EventSubscriber<Event>& subscriber);
 
         EventQueue() = default;
 
     private:
         void dispatch(Event* event);
 
-        std::unordered_set<Subscriber*> m_subscribers;
+        std::unordered_set<EventSubscriber<Event>*> m_subscribers;
         std::vector<std::unique_ptr<Event> > m_queue;
     };
 }
