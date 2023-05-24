@@ -1,79 +1,60 @@
-template<typename PrintFn>
-Tee<PrintFn, if_is_invocable<PrintFn> >::Tee(PrintFn fn) noexcept
-   : m_print(fn) {}
+template<typename Print>
+constexpr nail::Tee<Print>::Tee(Print print)
+    : m_print(print) {}
 
-template<typename PrintFn>
+template<typename Print>
 template<typename V>
-decltype(auto) Tee<PrintFn, if_is_invocable<PrintFn> >::operator()(V&& value)
+inline auto nail::Tee<Print>::operator()(V&& value) const -> decltype(std::forward<V>(value))
 {
-   m_print(value);
-   return std::forward<V>(value);
+    std::invoke(m_print, value);
+    return std::forward<V>(value);
 }
 
-inline Tee<std::filesystem::path>::Tee(std::filesystem::path const& filePath, std::ios_base::openmode mode) noexcept
-   : m_file(filePath), m_mode(mode) {}
+constexpr nail::Tee<std::ostream>::Tee(std::ostream& os)
+    : m_os(os) {}
 
 template<typename V>
-decltype(auto) Tee<std::filesystem::path>::operator()(V&& value)
+inline auto nail::Tee<std::ostream>::operator()(V&& value) const -> decltype(std::forward<V>(value))
 {
-   std::ofstream file(m_file, m_mode);
-
-   if (file)
-      file << value << std::endl;
-   else
-      std::cerr << "unable to open file " << m_file << std::endl;
-
-   return std::forward<V>(value);
+    m_os << value << std::endl;
+    return std::forward<V>(value);
 }
 
-template<typename Stream>
-Tee<Stream, if_is_stream<Stream> >::Tee(Stream& output) noexcept
-   : m_output(output) {}
+constexpr nail::Tee<char const*>::Tee(char const* const file)
+    : m_path(file) {}
 
-template<typename Stream>
 template<typename V>
-decltype(auto) Tee<Stream, if_is_stream<Stream> >::operator()(V&& value)
+inline auto nail::Tee<char const*>::operator()(V&& value) const -> decltype(std::forward<V>(value))
 {
-   m_output << value << std::endl;
-   return std::forward<V>(value);
+    std::ofstream file(m_path, std::ios_base::out | std::ios_base::trunc);
+
+    if (file)
+        file << value << std::endl;
+    else
+        std::perror("Unable to tee");
+
+    return std::forward<V>(value);
 }
 
-template<typename PrintFunc, if_is_invocable<PrintFunc, int>>
-Tee<PrintFunc> make_tee(PrintFunc func) noexcept
+template<typename Print>
+constexpr nail::Tee<Print> nail::make_tee(Print print)
 {
-   return Tee<PrintFunc>(func);
+    return Tee<Print>(print);
 }
 
-template<typename Stream, if_is_stream<Stream, int>>
-Tee<Stream> make_tee(Stream& stream) noexcept
+constexpr nail::Tee<std::ostream> nail::make_tee(std::ostream& os)
 {
-   return Tee<Stream>(stream);
+    return Tee<std::ostream>(os);
+}
+
+constexpr nail::Tee<char const*> nail::make_tee(char const* const file)
+{
+    return Tee<char const*>(file);
 }
 
 template<typename V, typename TeeType>
-decltype(auto) operator|(V&& value, Tee<TeeType> tee_t)
+inline auto operator|(V&& value, nail::Tee<TeeType> const& tee_) -> decltype(std::forward<V>(value))
 {
-   tee_t(value);
-   return std::forward<V>(value);
-}
-
-template<typename V, typename CharType>
-decltype(auto) stee(V&& value, std::basic_ostream<CharType>& output)
-{
-   output << value << std::endl;
-   return std::forward<V>(value);
-}
-
-template<typename V>
-decltype(auto) ftee(V&& value, std::filesystem::path const& outputFile, std::ios_base::openmode mode)
-{
-   std::ofstream file(outputFile, mode);
-
-   if (file)
-      file << value << std::endl;
-   else
-      std::cerr << "unable to open file " << outputFile << std::endl;
-
-   return std::forward<V>(value);
+    return std::forward<V>(tee_(value));
 }
 
