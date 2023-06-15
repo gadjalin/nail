@@ -5,6 +5,8 @@
 #ifndef NAIL_DEBUG_HPP
 #define NAIL_DEBUG_HPP
 
+#include <string_view>
+
 #if defined(__clang__)
     #define __FILENAME__ __FILE_NAME__
 #elif defined(_WIN32)
@@ -18,14 +20,17 @@
 #endif
 
 // TODO: Cpp20 std::source_location
-struct SourceLocation
+namespace nail
 {
-    char const* file;
-    unsigned int line;
-    char const* function;
-};
+    struct SourceLocation
+    {
+        char const* file;
+        unsigned int line;
+        char const* function;
+    };
+}
 
-#define CURRENT_SOURCE_LOCATION SourceLocation{__FILENAME__, static_cast<unsigned int>(__LINE__), __func__ }
+#define CURRENT_SOURCE_LOCATION nail::SourceLocation{__FILENAME__, static_cast<unsigned int>(__LINE__), __func__ }
 
 #endif // NAIL_DEBUG_HPP
 /**

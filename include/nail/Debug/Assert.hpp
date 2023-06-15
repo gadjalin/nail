@@ -16,7 +16,7 @@
 
 // Generic macro
 #define NAIL_ASSERT(expression, handlerType, ...) \
-    nail::Assert<handlerType>([&](void) -> bool { return (expression); }, CURRENT_SOURCE_LOCATION, #expression, __VA_ARGS__)
+    nail::try_assert<handlerType>([&](void) -> bool { return (expression); }, CURRENT_SOURCE_LOCATION, #expression, __VA_ARGS__)
 
 // For debug assertions, only evaluated when NDEBUG is not defined
 #if defined(NDEBUG)
@@ -34,12 +34,12 @@ namespace nail
 {
     // If Enabled
     template<typename Handler, typename Evaluator, typename... Args>
-    auto Assert(Evaluator const& evaluator, SourceLocation const& location,
+    auto try_assert(Evaluator const& evaluator, SourceLocation const& location,
                 char const* expression, Args&&... args) noexcept -> std::enable_if_t<Handler::enabled>;
 
     // If Disabled
     template<typename Handler, typename Evaluator, typename... Args>
-    auto Assert(Evaluator const& evaluator, SourceLocation const& location,
+    auto try_assert(Evaluator const& evaluator, SourceLocation const& location,
                 char const* expression, Args&&... args) noexcept -> std::enable_if_t<not Handler::enabled>;
 
     class NAIL_API EnabledAssertHandler

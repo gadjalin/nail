@@ -1,5 +1,5 @@
 template<typename Handler, typename Evaluator, typename... Args>
-inline auto nail::Assert(
+inline auto nail::try_assert(
     Evaluator const& evaluator,
     SourceLocation const& location,
     char const* expression,
@@ -14,6 +14,6 @@ inline auto nail::Assert(
 }
 
 template<typename Handler, typename Evaluator, typename... Args>
-inline auto nail::Assert(Evaluator const&, SourceLocation const&, char const*, Args&&...) noexcept -> std::enable_if_t<not Handler::enabled>
+inline auto nail::try_assert(Evaluator const&, SourceLocation const&, char const*, Args&&...) noexcept -> std::enable_if_t<not Handler::enabled>
 {}
 
