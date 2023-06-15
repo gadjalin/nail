@@ -10,18 +10,18 @@
 #include <utility>
 #include <vector>
 
-#include "nail/Event/EventSubscriber.hpp"
+#include "nail/Common/Observer.hpp"
 
 namespace nail
 {
     template<typename Event>
     class EventQueue
     {
-        using Subscriber = EventSubscriber<Event>;
+        using Subscriber = Observer<void (Event&)>;
 
     public:
         void push(Event&& event);
-        void process();
+        void processQueue();
 
         void subscribe(Subscriber& subscriber);
         void unsubscribe(Subscriber& subscriber);

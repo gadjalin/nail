@@ -7,23 +7,25 @@
 
 #include <functional>
 
+#include "nail/Common/Observer.hpp"
+
 namespace nail
 {
     template<typename Event>
-    class EventSubscriber
+    class EventSubscriber : public Observer<void (Event&)>
     {
         // TODO: Find lighter alternative to std::function
         using Callback = std::function<void (Event&)>;
 
     public:
-        void operator()(Event& event) const;
+        virtual void update(Event& event) override;
 
         template<typename Fn>
-        void setCallback(Fn callback) noexcept;
+        void setCallback(Fn callback);
 
         template<typename Fn>
-        EventSubscriber(Fn callback);
-        EventSubscriber() = default;
+        explicit EventSubscriber(Fn callback);
+        EventSubscriber() noexcept = default;
 
     private:
         Callback m_callback;

@@ -4,14 +4,15 @@ inline nail::EventSubscriber<Event>::EventSubscriber(Fn callback)
     : m_callback(callback) {}
 
 template<typename Event>
-inline void nail::EventSubscriber<Event>::operator()(Event& event) const
+inline void nail::EventSubscriber<Event>::update(Event& event)
 {
-    m_callback(event);
+    if (m_callback)
+        m_callback(event);
 }
 
 template<typename Event>
 template<typename Fn>
-inline void nail::EventSubscriber<Event>::setCallback(Fn callback) noexcept
+inline void nail::EventSubscriber<Event>::setCallback(Fn callback)
 {
     m_callback = callback;
 }

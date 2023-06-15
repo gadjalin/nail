@@ -5,7 +5,7 @@ inline void nail::EventQueue<Event>::push(Event&& event)
 }
 
 template<typename Event>
-inline void nail::EventQueue<Event>::process()
+inline void nail::EventQueue<Event>::processQueue()
 {
     for (auto& event : std::exchange(m_queue, {}))
         dispatch(event.get());
@@ -15,7 +15,7 @@ template<typename Event>
 inline void nail::EventQueue<Event>::dispatch(Event* event)
 {
     for (auto& subscriber : m_subscribers)
-        std::invoke(*subscriber, *event);
+        subscriber->update(*event);
 }
 
 template<typename Event>
