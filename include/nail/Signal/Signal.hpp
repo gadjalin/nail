@@ -7,17 +7,14 @@
 
 #include <unordered_set>
 
-#include "nail/Signal/Observer.hpp"
+#include "nail/Common/Observer.hpp"
 
 namespace nail
 {
-    template<typename Fn>
-    class Signal;
-
-    template<typename Return, typename... Args>
-    class Signal<Return (Args...)>
+    template<typename... Args>
+    class Signal
     {
-        using Listener = nail::Observer<Return (Args...)>;
+        using Listener = nail::Observer<void (Args...)>;
 
     public:
         void listen(Listener& listener);

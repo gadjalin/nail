@@ -1,3 +1,7 @@
+// Observer.hpp
+// Gaétan "Gad" Jalin
+// 29 Jul 2021
+// See end of file for complete licence description
 #ifndef NAIL_OBSERVER_HPP
 #define NAIL_OBSERVER_HPP
 
@@ -18,10 +22,6 @@ namespace nail
 
 #endif // NAIL_OBSERVER_HPP
 /**
- * Observer.hpp
- * 29 Jul 2021
- * Gaétan "Gad" Jalin
- *
  * Copyright (C) 2020-2023 Gaétan Jalin
  *
  * This software is provided 'as-is', without any express or implied
