@@ -11,8 +11,11 @@
 #include <nail/crash.hpp>
 #include <nail/debug.hpp>
 
+#include <nail/Common/Observer.hpp>
+
 #include <nail/Debug/Assert.hpp>
 #include <nail/Debug/Tee.hpp>
+#include <nail/Debug/TodoBefore.hpp>
 
 #include <nail/Event/EventQueue.hpp>
 #include <nail/Event/EventSubscriber.hpp>

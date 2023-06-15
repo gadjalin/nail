@@ -25,7 +25,7 @@ namespace nail
 
         template<typename Fn>
         explicit Listener(Fn callback);
-        Listener() = default;
+        Listener() noexcept = default;
 
         virtual ~Listener() = default;
 
