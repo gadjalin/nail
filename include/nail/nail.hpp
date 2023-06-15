@@ -17,6 +17,9 @@
 #include <nail/Event/EventQueue.hpp>
 #include <nail/Event/EventSubscriber.hpp>
 
+#include <nail/Signal/Signal.hpp>
+#include <nail/Signal/Listener.hpp>
+
 #endif // NAIL_HPP
 /**
  * nail.hpp

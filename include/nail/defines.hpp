@@ -31,24 +31,6 @@
     #define NAIL_HIDDEN
 #endif // DLL/SO symbol visibility
 
-//template <>
-//struct fmt::formatter<std::filesystem::path>
-//{
-//    constexpr auto parse(format_parse_context& ctx) -> decltype(ctx.begin())
-//    {
-//        auto it = ctx.begin(), end = ctx.end();
-//        if (it != end && *it != '}')
-//            throw format_error("invalid format");
-//        return it;
-//    }
-// 
-//    template<typename FormatContext>
-//    auto format(std::filesystem::path const& path, FormatContext& ctx) -> decltype(ctx.out())
-//    {
-//        return format_to(ctx.out(), "{}", path.string());
-//    }
-//};
-
 #endif // NAIL_DEFINES_HPP
 /**
  * Copyright (C) 2020-2023 Gaétan Jalin

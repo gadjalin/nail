@@ -7,7 +7,7 @@
 
 namespace nail
 {
-    Version GetLibraryVersion() noexcept
+    Version getLibraryVersion() noexcept
     {
         return {
             .major = NAIL_VERSION_MAJOR,
@@ -17,7 +17,7 @@ namespace nail
         };
     }
 
-    char const* GetLibraryVersionString() noexcept
+    char const* getLibraryVersionString() noexcept
     {
         return NAIL_MAKE_VERSION_STRING(NAIL_VERSION_MAJOR, NAIL_VERSION_MINOR, NAIL_VERSION_REV, NAIL_VERSION_STAGE);
     }

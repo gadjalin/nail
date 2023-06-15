@@ -12,7 +12,7 @@
 #define NAIL_VERSION_REV 1
 #define NAIL_VERSION_STAGE "pre"
 
-#define NAIL_VERSION_STRING nail::MakeVersionString(NAIL_VERSION_MAJOR, NAIL_VERSION_MINOR, NAIL_VERSION_REV, NAIL_VERSION_STAGE)
+#define NAIL_VERSION_STRING nail::makeVersionString(NAIL_VERSION_MAJOR, NAIL_VERSION_MINOR, NAIL_VERSION_REV, NAIL_VERSION_STAGE)
 
 namespace nail
 {
@@ -25,9 +25,9 @@ namespace nail
     };
 
 #if defined(__cpp_consteval) && __cpp_consteval >= 201811L
-    consteval char const* MakeVersionString(
+    consteval char const* makeVersionString(
 #else
-    constexpr char const* MakeVersionString(
+    constexpr char const* makeVersionString(
 #endif
         int const major,
         int const minor,
@@ -40,8 +40,8 @@ namespace nail
                NAIL_VERSION_STAGE;
     }
 
-    NAIL_API Version GetLibraryVersion() noexcept;
-    NAIL_API char const* GetLibraryVersionString() noexcept;
+    NAIL_API Version getLibraryVersion() noexcept;
+    NAIL_API char const* getLibraryVersionString() noexcept;
 }
 
 #endif // NAIL_VERSION_HPP
