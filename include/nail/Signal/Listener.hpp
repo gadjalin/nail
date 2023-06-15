@@ -7,21 +7,18 @@
 
 #include <functional>
 
-#include "nail/Signal/Observer.hpp"
+#include "nail/Common/Observer.hpp"
 
 namespace nail
 {
-    template<typename Fn>
-    class Listener;
-
-    template<typename Return, typename... Args>
-    class Listener<Return (Args...)> : public Observer<Return (Args...)>
+    template<typename... Args>
+    class Listener : public Observer<void (Args...)>
     {
         // TODO: Find lighter alternative to std::function
-        using Callback = std::function<Return (Args...)>;
+        using Callback = std::function<void (Args...)>;
 
     public:
-        virtual Return update(Args&&... args) override;
+        virtual void update(Args&&... args) override;
 
         template<typename Fn>
         void setCallback(Fn callback);
