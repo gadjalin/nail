@@ -16,6 +16,7 @@
 lib/
 bin/
 obj/
+*.out
 *.o
 *.exe
 *.dll

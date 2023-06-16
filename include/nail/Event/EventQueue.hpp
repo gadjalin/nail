@@ -17,6 +17,7 @@ namespace nail
     template<typename Event>
     class EventQueue
     {
+    public:
         using Subscriber = Observer<void (Event&)>;
 
     public:

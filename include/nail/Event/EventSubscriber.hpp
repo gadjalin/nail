@@ -11,9 +11,11 @@
 
 namespace nail
 {
-    template<typename Event>
+    // When you want to listen to a specific type of event
+    template<typename Event, typename Type = typename Event::Type>
     class EventSubscriber : public Observer<void (Event&)>
     {
+    public:
         // TODO: Find lighter alternative to std::function
         using Callback = std::function<void (Event&)>;
 
@@ -22,12 +24,14 @@ namespace nail
 
         template<typename Fn>
         void setCallback(Fn callback);
+        void setType(Type type);
 
-        template<typename Fn>
-        explicit EventSubscriber(Fn callback);
+        template<typename Fn = std::nullptr_t>
+        explicit EventSubscriber(Type type, Fn callback = nullptr);
         EventSubscriber() noexcept = default;
 
     private:
+        Type m_eventType;
         Callback m_callback;
     };
 }

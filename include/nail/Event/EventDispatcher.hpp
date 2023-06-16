@@ -1,9 +1,9 @@
-// Listener.hpp
+// EventDispatcher.hpp
 // Gaétan "Gad" Jalin
-// 6 Feb 2021
+// 16 Jun 2023
 // See end of file for complete licence description
-#ifndef NAIL_LISTENER_HPP
-#define NAIL_LISTENER_HPP
+#ifndef NAIL_EVENTDISPATCHER_HPP
+#define NAIL_EVENTDISPATCHER_HPP
 
 #include <functional>
 
@@ -11,33 +11,33 @@
 
 namespace nail
 {
-    template<typename... Args>
-    class Listener : public Observer<void (Args...)>
+    // When you want to handle yourself the dispatching depending on the type
+    // of event
+    template<typename Event>
+    class EventDispatcher : public Observer<void (Event&)>
     {
     public:
-        // TODO: Find lighter alternative to std::function
-        using Callback = std::function<void (Args...)>;
+        using Callback = std::function<void (Event&)>;
 
     public:
-        virtual void update(Args&&... args) override;
+        virtual void update(Event& event) override;
+        void dispatch(Event& event);
 
         template<typename Fn>
         void setCallback(Fn callback);
 
         template<typename Fn>
-        explicit Listener(Fn callback);
-        Listener() noexcept = default;
-
-        virtual ~Listener() = default;
+        explicit EventDispatcher(Fn callback);
+        EventDispatcher() noexcept = default;
 
     private:
         Callback m_callback;
     };
 }
 
-#include "Listener.inl"
+#include "EventDispatcher.inl"
 
-#endif // NAIL_LISTENER_HPP
+#endif // NAIL_EVENTDISPATCHER_HPP
 /**
  * Copyright (C) 2020-2023 Gaétan Jalin
  *
