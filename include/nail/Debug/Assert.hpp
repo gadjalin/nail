@@ -51,7 +51,7 @@ namespace nail
         static void Handle(SourceLocation const& location, char const* expression, char const* message) noexcept;
     };
 
-    class DisabledAssertHandler
+    class NAIL_API DisabledAssertHandler
     {
     public:
         static constexpr bool enabled = false;
