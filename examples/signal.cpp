@@ -2,42 +2,41 @@
 
 #include <nail/Signal/Signal.hpp>
 #include <nail/Signal/Listener.hpp>
+#include <nail/Debug/Tee.hpp>
 
 class Hammer
 {
-    using SwingSignal = nail::Signal<void (std::string const&)>;
+public:
+    using SwingSignal = nail::Signal<std::string const&>;
+
 public:
     void swing()
     {
-        std::cout << "Hammer was swung !" << std::endl;
-        m_swingSignal.emit("I'm coming for you !");
+        "Hammer was swung !" | stdtee;
+        swingSignal.emit("Hammer: I'm coming for you !");
     }
 
-    SwingSignal& swingSignal() noexcept
-    {
-        return m_swingSignal;
-    }
-
-private:
-    SwingSignal m_swingSignal;
+    SwingSignal swingSignal;
 };
 
 class Nail
 {
-    using SwingListener = nail::Listener<void (std::string const&)>;
+public:
+    using SwingListener = nail::Listener<std::string const&>;
+
 public:
     void fear()
     {
-        std::cout << "Nail has panicked !" << std::endl;
+        "Nail has panicked !" | stdtee;
     }
 
     void observeNearbyHammer(Hammer* hammer)
     {
-        hammer->swingSignal().listen(m_swingListener);
+        hammer->swingSignal.listen(m_swingListener);
     }
 
     Nail()
-     : m_swingListener(
+        : m_swingListener(
             [this](std::string const& threat)
             {
                 this->fear();
