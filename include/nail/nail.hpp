@@ -19,6 +19,7 @@
 
 #include <nail/Event/EventQueue.hpp>
 #include <nail/Event/EventSubscriber.hpp>
+#include <nail/Event/EventDispatcher.hpp>
 
 #include <nail/Signal/Signal.hpp>
 #include <nail/Signal/Listener.hpp>

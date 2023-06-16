@@ -14,6 +14,7 @@ namespace nail
     template<typename... Args>
     class Signal
     {
+    public:
         using Listener = nail::Observer<void (Args...)>;
 
     public:
