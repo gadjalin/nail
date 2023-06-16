@@ -24,6 +24,8 @@
 #include <nail/Signal/Signal.hpp>
 #include <nail/Signal/Listener.hpp>
 
+#include <nail/StrongType/NamedType.hpp>
+
 #endif // NAIL_HPP
 /**
  * nail.hpp

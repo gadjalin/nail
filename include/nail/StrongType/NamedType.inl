@@ -1,69 +1,57 @@
-template<typename Type, typename Parameter, template<typename> class... Capabilities>
-nail::NamedType<Type, Parameter, Capabilities...>::NamedType(Type const& value)
-   : m_value(value) {}
+template<typename Underlying, typename Tag>
+inline nail::NamedType<Underlying, Tag>::NamedType(Underlying const& value)
+    : m_value(value) {}
 
-template<typename Type, typename Parameter, template<typename> class... Capabilities>
-template<typename Type_>
-nail::NamedType<Type, Parameter, Capabilities...>::NamedType(Type&& value, std::enable_if_t<!std::is_reference_v<Type_>, std::nullptr_t>)
-   : m_value(std::move(value)) {}
+template<typename Underlying, typename Tag>
+template<typename T, typename>
+inline nail::NamedType<Underlying, Tag>::NamedType(Underlying&& value)
+    : m_value(std::move(value)) {}
 
-template<typename Type, typename Parameter, template<typename> class... Capabilities>
-inline Type& nail::NamedType<Type, Parameter, Capabilities...>::get() noexcept
+template<typename Underlying, typename Tag>
+inline Underlying& nail::NamedType<Underlying, Tag>::get() noexcept
 {
-   return m_value;
+    return m_value;
 }
 
-template<typename Type, typename Parameter, template<typename> class... Capabilities>
-inline Type const& nail::NamedType<Type, Parameter, Capabilities...>::get() const noexcept
+template<typename Underlying, typename Tag>
+inline Underlying const& nail::NamedType<Underlying, Tag>::get() const noexcept
 {
-   return m_value;
+    return m_value;
 }
 
-template<typename Type, template<typename> class crtpType>
-inline Type& nail::crtp<Type, crtpType>::underlying() noexcept
+template<typename Underlying, typename Tag>
+inline Underlying* nail::NamedType<Underlying, Tag>::operator->() noexcept
 {
-   return static_cast<Type&>(*this);
+    return std::addressof(m_value);
 }
 
-template<typename Type, template<typename> class crtpType>
-inline Type const& nail::crtp<Type, crtpType>::underlying() const noexcept
+template<typename Underlying, typename Tag>
+inline Underlying const* nail::NamedType<Underlying, Tag>::operator->() const noexcept
 {
-   return static_cast<Type const&>(*this);
+    return std::addressof(m_value);
 }
 
-template<typename Type, typename Parameter, template<typename> class... Capabilities>
-inline Type* nail::Dereferenceable<nail::NamedType<Type, Parameter, Capabilities...> >::operator->() noexcept
+template<typename Underlying, typename Tag>
+inline Underlying& nail::NamedType<Underlying, Tag>::operator*() & noexcept
 {
-   return std::addressof(this->underlying().get());
+    return m_value;
 }
 
-template<typename Type, typename Parameter, template<typename> class... Capabilities>
-inline Type const* nail::Dereferenceable<nail::NamedType<Type, Parameter, Capabilities...> >::operator->() const noexcept
+template<typename Underlying, typename Tag>
+inline Underlying const& nail::NamedType<Underlying, Tag>::operator*() const& noexcept
 {
-   return std::addressof(this->underlying().get());
+    return m_value;
 }
 
-template<typename Type, typename Parameter, template<typename> class... Capabilities>
-inline Type& nail::Dereferenceable<nail::NamedType<Type, Parameter, Capabilities...> >::operator*() noexcept
+template<typename Underlying, typename Tag>
+inline Underlying&& nail::NamedType<Underlying, Tag>::operator*() && noexcept
 {
-   return this->underlying().get();
+    return std::move(m_value);
 }
 
-template<typename Type, typename Parameter, template<typename> class... Capabilities>
-inline Type const& nail::Dereferenceable<nail::NamedType<Type, Parameter, Capabilities...> >::operator*() const noexcept
+template<typename Underlying, typename Tag>
+inline Underlying const&& nail::NamedType<Underlying, Tag>::operator*() const&& noexcept
 {
-   return this->underlying().get();
-}
-
-template<typename Type, typename Parameter, template<typename> class... Capabilities>
-inline nail::ImplicitlyConvertible<nail::NamedType<Type, Parameter, Capabilities...> >::operator Type&() noexcept
-{
-   return this->underlying().get();
-}
-
-template<typename Type, typename Parameter, template<typename> class... Capabilities>
-inline nail::ImplicitlyConvertible<nail::NamedType<Type, Parameter, Capabilities...> >::operator Type const&() const noexcept
-{
-   return this->underlying().get();
+    return std::move(m_value);
 }
 

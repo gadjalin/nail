@@ -5,71 +5,36 @@
 #ifndef NAIL_NAMEDTYPE_HPP
 #define NAIL_NAMEDTYPE_HPP
 
-// Inspired by fluentcpp articles on Strong Types
+// Inspired by https://fluentcpp.com articles on Strong Types
 
 #include <memory>
 #include <type_traits>
 
-#include "nail/defines.hpp"
-
 namespace nail
 {
-   // TODO Capabilities Impl
-   template<typename Type, typename Parameter, template<typename> class... Capabilities>
-   class NamedType : public Capabilities<NamedType<Type, Parameter, Capabilities...> >...
-   {
-   public:
-      explicit NamedType(Type const& value);
-      template<typename Type_ = Type>
-      explicit NamedType(Type&& value,
-                         typename std::enable_if_t<!std::is_reference_v<Type_>, std::nullptr_t> = nullptr);
+    template<typename Underlying, typename Tag>
+    class NamedType
+    {
+    public:
+        Underlying& get() noexcept;
+        Underlying const& get() const noexcept;
 
-      Type& get() noexcept;
-      Type const& get() const noexcept;
+        explicit NamedType(Underlying const& value);
+        template<typename T = Underlying, typename = typename std::enable_if_t<!std::is_reference_v<T> > >
+        explicit NamedType(Underlying&& value);
 
-   private:
-      Type m_value;
-   };
+        Underlying* operator->() noexcept;
+        Underlying const* operator->() const noexcept;
 
-   template<typename Type, template<typename> class crtpType>
-   class crtp
-   {
-   public:
-      Type& underlying() noexcept;
-      Type const& underlying() const noexcept;
+        Underlying& operator*() & noexcept;
+        Underlying const& operator*() const& noexcept;
 
-   private:
-      crtp() = default;
+        Underlying&& operator*() && noexcept;
+        Underlying const&& operator*() const&& noexcept;
 
-      friend crtpType<Type>;
-   };
-
-   template<typename NamedType_>
-   class Dereferenceable;
-
-   template<typename Type, typename Parameter, template<typename> class... Capabilities>
-   class Dereferenceable<NamedType<Type, Parameter, Capabilities...> >
-      : public crtp<NamedType<Type, Parameter, Capabilities...>, Dereferenceable>
-   {
-   public:
-      Type* operator->() noexcept;
-      Type const* operator->() const noexcept;
-
-      Type& operator*() noexcept;
-      Type const& operator*() const noexcept;
-   };
-
-   template<typename NamedType_>
-   class ImplicitlyConvertible;
-
-   template<typename Type, typename Parameter, template<typename> class... Capabilities>
-   class ImplicitlyConvertible<NamedType<Type, Parameter, Capabilities...> >
-      : public crtp<NamedType<Type, Parameter, Capabilities...>, ImplicitlyConvertible>
-   {
-   public:
-      operator Type&() noexcept;
-      operator Type const&() const noexcept;
-   };
+    private:
+        Underlying m_value;
+    };
 }
 
 #include "NamedType.inl"
