@@ -11,7 +11,7 @@ SET(NAIL_VERSION_REV "${CMAKE_MATCH_1}")
 STRING(REGEX MATCH "#define[ ]+NAIL_VERSION_STAGE[ ]+\"([A-Za-z]+)\"" _ ${NAIL_VERSION_FILE})
 SET(NAIL_VERSION_STAGE "${CMAKE_MATCH_1}")
 
-# Set the SemVer version string
+# Set the SemVer version variable
 SET(NAIL_VERSION ${NAIL_VERSION_MAJOR}.${NAIL_VERSION_MINOR}.${NAIL_VERSION_REV})
 
 PROJECT(LIBNAIL
@@ -33,7 +33,7 @@ SET(CMAKE_DEBUG_POSTFIX -d)
 SET(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 ADD_SUBDIRECTORY(deps/fmt)
-ADD_SUBDIRECTORY(deps/backward-cpp)
+#ADD_SUBDIRECTORY(deps/backward-cpp)
 
 ADD_LIBRARY(nail)
 
@@ -68,8 +68,8 @@ TARGET_INCLUDE_DIRECTORIES(nail PUBLIC
                            "${DEPS_DIR}/fmt/include"
                            "${PROJECT_BINARY_DIR}")
 
-TARGET_INCLUDE_DIRECTORIES(nail PRIVATE
-                           "${DEPS_DIR}/backward-cpp")
+#TARGET_INCLUDE_DIRECTORIES(nail PRIVATE
+#                           "${DEPS_DIR}/backward-cpp")
 
 TARGET_INCLUDE_DIRECTORIES(nail SYSTEM PRIVATE
                            $<$<PLATFORM_ID:Linux,Darwin>:/usr/include>
@@ -86,12 +86,12 @@ TARGET_LINK_DIRECTORIES(nail PRIVATE
                         )
 
 # Add backward-cpp to search paths
-LIST(APPEND CMAKE_PREFIX_PATH ${DEPS_DIR}/backward-cpp)
-FIND_PACKAGE(Backward REQUIRED)
+#LIST(APPEND CMAKE_PREFIX_PATH ${DEPS_DIR}/backward-cpp)
+#FIND_PACKAGE(Backward REQUIRED)
 
 TARGET_LINK_LIBRARIES(nail PRIVATE
                       fmt
-                      Backward::Backward
+#                      Backward::Backward
 
                       Threads::Threads
                       ${CMAKE_DL_LIBS}
