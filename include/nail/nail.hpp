@@ -25,6 +25,7 @@
 #include <nail/Signal/Listener.hpp>
 
 #include <nail/StrongType/NamedType.hpp>
+#include <nail/StrongType/Ranged.hpp>
 
 #endif // NAIL_HPP
 /**

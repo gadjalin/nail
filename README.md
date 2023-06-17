@@ -39,6 +39,8 @@ Nail currently features the following:
 	- An **EventDispatcher**, because you can handle it better
 	- A **Signal/Listener** system, when it really can't wait
 - Strong Types [for strong interfaces](https://www.fluentcpp.com/2016/12/08/strong-types-for-strong-interfaces/)
+    - Additionaly, **Ranged** Numerical values, when you only accept values in a
+    specific range
 
 ## Coming Soon
 
