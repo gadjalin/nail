@@ -30,10 +30,6 @@
 
 #endif // NAIL_HPP
 /**
- * nail.hpp
- * 27 Nov 2020
- * Gaétan "Gad" Jalin
- *
  * Copyright (C) 2020-2023 Gaétan Jalin
  *
  * This software is provided 'as-is', without any express or implied
