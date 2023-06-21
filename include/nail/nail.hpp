@@ -12,6 +12,7 @@
 #include <nail/debug.hpp>
 
 #include <nail/Common/Observer.hpp>
+#include <nail/Common/System.hpp>
 
 #include <nail/Debug/Assert.hpp>
 #include <nail/Debug/Tee.hpp>
