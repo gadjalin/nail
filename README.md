@@ -38,9 +38,10 @@ Nail currently features the following:
 	- An **EventQueue**, when a time will come to **process()**
 	- An **EventDispatcher**, because you can handle it better
 	- A **Signal/Listener** system, when it really can't wait
-- Strong Types [for strong interfaces](https://www.fluentcpp.com/2016/12/08/strong-types-for-strong-interfaces/)
-    - Additionaly, **Ranged** Numerical values, when you only accept values in a
-    specific range
+ - Strong Types [for strong interfaces](https://www.fluentcpp.com/2016/12/08/strong-types-for-strong-interfaces/)
+    - Additionaly, **Ranged** Numerical values, when you only accept values in a specific range
+ - **Shared Library** management
+ - **System Info** Utilities (Memory, OS, Architecture...)
 
 ## Coming Soon
 
@@ -48,10 +49,8 @@ Nail currently features the following:
  - A **Logging** system
  - Custom **Memory Management**
  - **Time/Date/Chrono** Utilities
- - **Shared Library** management
  - **Math** Utilities
  - **Random Number Generator** Utility
- - **System Specs** Utilities (Memory, OS, Architecture...)
  - Probably more uninteresting stuff...
 
 ## Installation
