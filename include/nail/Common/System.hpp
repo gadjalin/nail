@@ -1,4 +1,4 @@
-// version.hpp
+// System.hpp
 // 3 Apr 2021
 // Gaétan "Gad" Jalin
 // See end of file for complete licence description

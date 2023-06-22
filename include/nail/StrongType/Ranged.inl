@@ -5,19 +5,13 @@ inline nail::Ranged<Type, Min, Max, Default>::Ranged() noexcept
 template<typename Type, Type Min, Type Max, Type Default>
 inline nail::Ranged<Type, Min, Max, Default>::Ranged(Type const& value)
 {
-    if (isInRange(value))
-        m_value = value;
-    else
-        defaultsAndThrow(value);
+    *this = value;
 }
 
 template<typename Type, Type Min, Type Max, Type Default>
 inline nail::Ranged<Type, Min, Max, Default>::Ranged(Type&& value)
 {
-    if (isInRange(value))
-        m_value = std::exchange(value, {});
-    else
-        defaultsAndThrow(value);
+    *this = std::move(value);
 }
 
 template<typename Type, Type Min, Type Max, Type Default>

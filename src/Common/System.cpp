@@ -38,7 +38,7 @@ namespace nail
             if (gethostname(&name[0], hostnameSize))
                 return "";
         #else
-            #error "Missing implementation!"
+            NAIL_MISSING_IMPLEMENTATION();
         #endif
 
             return name;
@@ -59,7 +59,7 @@ namespace nail
             if (getlogin_r(&name[0], loginNameSize))
                 return "";
         #else
-            #error "Missing implementation!"
+            NAIL_MISSING_IMPLEMENTATION();
         #endif
 
             return name;
@@ -76,7 +76,7 @@ namespace nail
 
             return sysInfo.sysname;
         #else
-            #error "Missing implementation!"
+            NAIL_MISSING_IMPLEMENTATION();
         #endif
         }
 
@@ -112,7 +112,7 @@ namespace nail
 
             return version;
         #else
-            #error "Missing implementation!"
+            NAIL_MISSING_IMPLEMENTATION();
         #endif
         }
 
@@ -128,7 +128,7 @@ namespace nail
 
             return sysInfo.release;
         #else
-            #error "Missing implementation!"
+            NAIL_MISSING_IMPLEMENTATION();
         #endif
         }
 
@@ -174,7 +174,7 @@ namespace nail
             else
                 return Arch::Unknown;
         #else
-            #error "Missing implementation!"
+            NAIL_MISSING_IMPLEMENTATION();
         #endif
         }
 
@@ -242,7 +242,7 @@ namespace nail
 
             return { static_cast<uint32_t>(physic), static_cast<uint32_t>(logic) };
         #else
-            #error "Missing implementation!"
+            NAIL_MISSING_IMPLEMENTATION();
         #endif
         }
 
@@ -282,7 +282,7 @@ namespace nail
 
             return name;
         #else
-            #error "Missing implementation!"
+            NAIL_MISSING_IMPLEMENTATION();
         #endif
         }
 
@@ -377,7 +377,7 @@ namespace nail
 
         return { total, available, total - available };
     #else
-        #error "Missing implementation!"
+        NAIL_MISSING_IMPLEMENTATION();
     #endif
     }
 }
