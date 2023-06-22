@@ -30,6 +30,8 @@
 // Always active, wether build type is debug or release
 #define NAIL_ALWAYS_ASSERT(expression, message) NAIL_ASSERT(expression, nail::EnabledAssertHandler, message)
 
+#define NAIL_MISSING_IMPLEMENTATION() NAIL_ALWAYS_ASSERT(false, "Missing implementation")
+
 namespace nail
 {
     // If Enabled

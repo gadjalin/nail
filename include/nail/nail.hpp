@@ -12,6 +12,8 @@
 #include <nail/debug.hpp>
 
 #include <nail/Common/Observer.hpp>
+#include <nail/Common/System.hpp>
+#include <nail/Common/DynamicLibrary.hpp>
 
 #include <nail/Debug/Assert.hpp>
 #include <nail/Debug/Tee.hpp>
@@ -25,13 +27,10 @@
 #include <nail/Signal/Listener.hpp>
 
 #include <nail/StrongType/NamedType.hpp>
+#include <nail/StrongType/Ranged.hpp>
 
 #endif // NAIL_HPP
 /**
- * nail.hpp
- * 27 Nov 2020
- * Gaétan "Gad" Jalin
- *
  * Copyright (C) 2020-2023 Gaétan Jalin
  *
  * This software is provided 'as-is', without any express or implied
