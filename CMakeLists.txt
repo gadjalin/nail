@@ -18,7 +18,7 @@ PROJECT(LIBNAIL
         VERSION ${NAIL_VERSION}
         LANGUAGES CXX)
 
-# Nail version si formatted as "1-2.3a"
+# Nail version is formatted as "1-2.3a"
 MESSAGE(STATUS "Configuring Nail ${NAIL_VERSION_MAJOR}-${NAIL_VERSION_MINOR}.${NAIL_VERSION_REV}${NAIL_VERSION_STAGE}...")
 
 FIND_PACKAGE(Threads REQUIRED)
@@ -77,8 +77,8 @@ TARGET_INCLUDE_DIRECTORIES(nail SYSTEM PRIVATE
 
 TARGET_SOURCES(nail PRIVATE
                ${CPP_DIR}/version.cpp
-               ${CPP_DIR}/Common/System.cpp
-               ${CPP_DIR}/Common/DynamicLibrary.cpp
+               ${CPP_DIR}/Utils/System.cpp
+               ${CPP_DIR}/Utils/DynamicLibrary.cpp
                ${CPP_DIR}/Debug/Assert.cpp
                )
 
