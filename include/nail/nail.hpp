@@ -23,6 +23,11 @@
 #include <nail/Event/EventSubscriber.hpp>
 #include <nail/Event/EventDispatcher.hpp>
 
+#include <nail/Log/Logger.hpp>
+#include <nail/Log/Writer.hpp>
+#include <nail/Log/ConsoleWriter.hpp>
+#include <nail/Log/FileWriter.hpp>
+
 #include <nail/Signal/Signal.hpp>
 #include <nail/Signal/Listener.hpp>
 

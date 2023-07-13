@@ -4,8 +4,8 @@
 
 namespace nail
 {
-    ConsoleWriter ConsoleWriter::std(std::cout);
-    ConsoleWriter ConsoleWriter::err(std::cerr);
+    std::shared_ptr<ConsoleWriter> ConsoleWriter::out(new ConsoleWriter(std::cout));
+    std::shared_ptr<ConsoleWriter> ConsoleWriter::err(new ConsoleWriter(std::cerr));
 
     ConsoleWriter::ConsoleWriter(std::ostream& os) noexcept
         : m_output(os) {}

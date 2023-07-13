@@ -18,8 +18,8 @@ namespace nail
     class NAIL_API ConsoleWriter : public Writer, NonCopyable, NonMovable
     {
     public:
-        static ConsoleWriter std;
-        static ConsoleWriter err;
+        static std::shared_ptr<ConsoleWriter> out;
+        static std::shared_ptr<ConsoleWriter> err;
 
         void write(Logger::Level level, std::string_view line) override;
 

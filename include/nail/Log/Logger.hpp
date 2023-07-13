@@ -7,16 +7,16 @@
 
 #include <string>
 #include <unordered_set>
+#include <unordered_map>
 #include <fmt/format.h>
 
 #include "nail/defines.hpp"
-
-#define NAIL_LOGGER_MAXIDSIZE 15
 
 namespace nail
 {
     class Writer;
 
+    // TODO: Thread safety + optimisation
     class NAIL_API Logger
     {
     public:
@@ -29,8 +29,21 @@ namespace nail
             Critical
         };
 
+        template<typename T>
+        void log(Level level, T const& line);
         template<typename... Args>
         void log(Level level, std::string_view fmt, Args&&... args);
+
+        template<typename T>
+        void debug(T const& line);
+        template<typename T>
+        void info(T const& line);
+        template<typename T>
+        void warn(T const& line);
+        template<typename T>
+        void error(T const& line);
+        template<typename T>
+        void critical(T const& line);
 
         template<typename... Args>
         void debug(std::string_view fmt, Args&&... args);
@@ -43,23 +56,40 @@ namespace nail
         template<typename... Args>
         void critical(std::string_view fmt, Args&&... args);
 
-        void addWriter(Writer& writer);
-        void removeWriter(Writer& writer);
+        void addWriter(std::shared_ptr<Writer> writer);
+        void removeWriter(std::shared_ptr<Writer> writer);
+        void clearWriters() noexcept;
 
         void setLogLevel(Level level) noexcept;
         Level getLogLevel() const noexcept;
 
         std::string const& getID() const noexcept;
 
-        template<size_t IdSize>
-        explicit Logger(char const (&id)[IdSize], Level logLevel = Level::Info);
+        static std::shared_ptr<Logger> Create(std::string const& id,
+                                              Level logLevel = Level::Info);
+        static std::shared_ptr<Logger> Create(std::string const& id,
+                                              std::shared_ptr<Writer> writer,
+                                              Level logLevel = Level::Info);
+        static std::shared_ptr<Logger> Create(std::string const& id,
+                                              std::initializer_list<std::shared_ptr<Writer> > writers,
+                                              Level logLevel = Level::Info);
+
+        static std::shared_ptr<Logger> Get(std::string const& id);
+
+        static void Delete(std::string const& id);
+        static void DeleteAll() noexcept;
+
+        explicit Logger(std::string const& id, Level logLevel = Level::Info);
 
     private:
         void write(Level level, std::string_view line);
+        static std::shared_ptr<Logger> TryCreate(std::string const& id, Level logLevel);
 
         std::string const m_id;
         Level m_logLevel;
-        std::unordered_set<Writer*> m_writers;
+        std::unordered_set<std::shared_ptr<Writer> > m_writers;
+
+        static std::unordered_map<std::string, std::shared_ptr<Logger> > s_loggers;
     };
 }
 
