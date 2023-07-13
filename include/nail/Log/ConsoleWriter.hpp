@@ -1,40 +1,36 @@
-// nail.hpp
-// 27 Nov 2020
+// ConsoleWriter.hpp
+// 12 Jul 2023
 // Gaétan "Gad" Jalin
 // See end of file for complete licence description
-#ifndef NAIL_HPP
-#define NAIL_HPP
+#ifndef NAIL_CONSOLEWRITER_HPP
+#define NAIL_CONSOLEWRITER_HPP
 
-#include <nail/platform.hpp>
-#include <nail/defines.hpp>
-#include <nail/version.hpp>
-#include <nail/crash.hpp>
-#include <nail/debug.hpp>
+#include <ostream>
+#include <string_view>
 
-#include <nail/Common/Observer.hpp>
-#include <nail/Common/System.hpp>
-#include <nail/Common/DynamicLibrary.hpp>
+#include "nail/defines.hpp"
+#include "nail/Common/NonCopyable.hpp"
+#include "nail/Log/Logger.hpp"
+#include "nail/Log/Writer.hpp"
 
-#include <nail/Debug/Assert.hpp>
-#include <nail/Debug/Tee.hpp>
-#include <nail/Debug/TodoBefore.hpp>
+namespace nail
+{
+    class NAIL_API ConsoleWriter : public Writer, NonCopyable, NonMovable
+    {
+    public:
+        static std::shared_ptr<ConsoleWriter> out;
+        static std::shared_ptr<ConsoleWriter> err;
 
-#include <nail/Event/EventQueue.hpp>
-#include <nail/Event/EventSubscriber.hpp>
-#include <nail/Event/EventDispatcher.hpp>
+        void write(Logger::Level level, std::string_view line) override;
 
-#include <nail/Log/Logger.hpp>
-#include <nail/Log/Writer.hpp>
-#include <nail/Log/ConsoleWriter.hpp>
-#include <nail/Log/FileWriter.hpp>
+    private:
+        explicit ConsoleWriter(std::ostream& os) noexcept;
 
-#include <nail/Signal/Signal.hpp>
-#include <nail/Signal/Listener.hpp>
+        std::ostream& m_output;
+    };
+}
 
-#include <nail/StrongType/NamedType.hpp>
-#include <nail/StrongType/Ranged.hpp>
-
-#endif // NAIL_HPP
+#endif // NAIL_CONSOLEWRITER_HPP
 /**
  * Copyright (C) 2020-2023 Gaétan Jalin
  *

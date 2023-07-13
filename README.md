@@ -28,6 +28,7 @@ wish you had during development and that does not need to be that complicated, b
 
 Nail currently features the following:
 
+ - A **Logging** system
  - Debugging Utilities
 	- An extensive implementation of **Assertions** inspired by [this article](https://www.foonathan.net/2016/09/assertions/)
 	- An implementation of **Tee**, when you don't want to put std::cout everywhere while debugging, inspired by [this article](https://www.fluentcpp.com/2017/09/29/tee-getting-precious-debug-info-easily/)
@@ -46,7 +47,6 @@ Nail currently features the following:
 ## Coming Soon
 
  - A **Console** interface
- - A **Logging** system
  - Custom **Memory Management**
  - **Time/Date/Chrono** Utilities
  - **Math** Utilities

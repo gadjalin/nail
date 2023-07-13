@@ -1,40 +1,26 @@
-// nail.hpp
-// 27 Nov 2020
+// Writer.hpp
+// 27 Apr 2021
 // Gaétan "Gad" Jalin
 // See end of file for complete licence description
-#ifndef NAIL_HPP
-#define NAIL_HPP
+#ifndef NAIL_WRITER_HPP
+#define NAIL_WRITER_HPP
 
-#include <nail/platform.hpp>
-#include <nail/defines.hpp>
-#include <nail/version.hpp>
-#include <nail/crash.hpp>
-#include <nail/debug.hpp>
+#include <string_view>
 
-#include <nail/Common/Observer.hpp>
-#include <nail/Common/System.hpp>
-#include <nail/Common/DynamicLibrary.hpp>
+#include "nail/Log/Logger.hpp"
 
-#include <nail/Debug/Assert.hpp>
-#include <nail/Debug/Tee.hpp>
-#include <nail/Debug/TodoBefore.hpp>
+namespace nail
+{
+    class Writer
+    {
+    public:
+       virtual void write(Logger::Level level, std::string_view line) = 0;
 
-#include <nail/Event/EventQueue.hpp>
-#include <nail/Event/EventSubscriber.hpp>
-#include <nail/Event/EventDispatcher.hpp>
+       virtual ~Writer() = default;
+    };
+}
 
-#include <nail/Log/Logger.hpp>
-#include <nail/Log/Writer.hpp>
-#include <nail/Log/ConsoleWriter.hpp>
-#include <nail/Log/FileWriter.hpp>
-
-#include <nail/Signal/Signal.hpp>
-#include <nail/Signal/Listener.hpp>
-
-#include <nail/StrongType/NamedType.hpp>
-#include <nail/StrongType/Ranged.hpp>
-
-#endif // NAIL_HPP
+#endif // NAIL_WRITER_HPP
 /**
  * Copyright (C) 2020-2023 Gaétan Jalin
  *

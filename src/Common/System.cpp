@@ -1,11 +1,10 @@
-// Inspired by https://github.com/ThePhD/infoware
+#include "nail/Common/System.hpp"
 
 #include <bitset>
 #include <csignal>
 #include <cstdlib>
 
 #include "nail/platform.hpp"
-#include "nail/Common/System.hpp"
 
 #if defined(NAIL_PLATFORM_WINDOWS)
     #include <lmcons.h>
@@ -19,6 +18,8 @@
     #include <mach/vm_statistics.h>
     #include <mach/mach.h>
 #endif
+
+// Inspired by https://github.com/ThePhD/infoware
 
 namespace nail
 {

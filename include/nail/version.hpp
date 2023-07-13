@@ -7,9 +7,10 @@
 
 #include "nail/defines.hpp"
 
+// Let's try to push to main branch every month
 #define NAIL_VERSION_MAJOR 0
-#define NAIL_VERSION_MINOR 1
-#define NAIL_VERSION_REV 9
+#define NAIL_VERSION_MINOR 23 // Year
+#define NAIL_VERSION_REV 7 // Month
 #define NAIL_VERSION_STAGE "a"
 
 #define NAIL_VERSION_STRING nail::makeVersionString(NAIL_VERSION_MAJOR, NAIL_VERSION_MINOR, NAIL_VERSION_REV, NAIL_VERSION_STAGE)

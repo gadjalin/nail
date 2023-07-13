@@ -1,40 +1,39 @@
-// nail.hpp
-// 27 Nov 2020
+// FileWriter.hpp
+// 12 Jul 2023
 // Gaétan "Gad" Jalin
 // See end of file for complete licence description
-#ifndef NAIL_HPP
-#define NAIL_HPP
+#ifndef NAIL_FILEWRITER_HPP
+#define NAIL_FILEWRITER_HPP
 
-#include <nail/platform.hpp>
-#include <nail/defines.hpp>
-#include <nail/version.hpp>
-#include <nail/crash.hpp>
-#include <nail/debug.hpp>
+#include <cstdio>
+#include <string_view>
 
-#include <nail/Common/Observer.hpp>
-#include <nail/Common/System.hpp>
-#include <nail/Common/DynamicLibrary.hpp>
+#include "nail/defines.hpp"
+#include "nail/Common/NonCopyable.hpp"
+#include "nail/Log/Logger.hpp"
+#include "nail/Log/Writer.hpp"
 
-#include <nail/Debug/Assert.hpp>
-#include <nail/Debug/Tee.hpp>
-#include <nail/Debug/TodoBefore.hpp>
+namespace nail
+{
+    class NAIL_API FileWriter : public Writer, NonCopyable, NonMovable
+    {
+    public:
+        void write(Logger::Level level, std::string_view line) override;
 
-#include <nail/Event/EventQueue.hpp>
-#include <nail/Event/EventSubscriber.hpp>
-#include <nail/Event/EventDispatcher.hpp>
+        std::string const& getFilePath() const noexcept;
 
-#include <nail/Log/Logger.hpp>
-#include <nail/Log/Writer.hpp>
-#include <nail/Log/ConsoleWriter.hpp>
-#include <nail/Log/FileWriter.hpp>
+        explicit FileWriter(std::string_view filepath);
+        ~FileWriter();
 
-#include <nail/Signal/Signal.hpp>
-#include <nail/Signal/Listener.hpp>
+    private:
+        std::string const m_filepath;
+        std::FILE* m_file;
+    };
+}
 
-#include <nail/StrongType/NamedType.hpp>
-#include <nail/StrongType/Ranged.hpp>
+#include "FileWriter.inl"
 
-#endif // NAIL_HPP
+#endif // NAIL_FILEWRITER_HPP
 /**
  * Copyright (C) 2020-2023 Gaétan Jalin
  *

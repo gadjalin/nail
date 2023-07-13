@@ -1,40 +1,36 @@
-// nail.hpp
-// 27 Nov 2020
+// NonCopyable.hpp
+// 6 Jul 2023
 // Gaétan "Gad" Jalin
 // See end of file for complete licence description
-#ifndef NAIL_HPP
-#define NAIL_HPP
+#ifndef NAIL_NONCOPYABLE_HPP
+#define NAIL_NONCOPYABLE_HPP
 
-#include <nail/platform.hpp>
-#include <nail/defines.hpp>
-#include <nail/version.hpp>
-#include <nail/crash.hpp>
-#include <nail/debug.hpp>
+namespace nail
+{
+    class NonCopyable
+    {
+    public:
+        NonCopyable() noexcept = default;
 
-#include <nail/Common/Observer.hpp>
-#include <nail/Common/System.hpp>
-#include <nail/Common/DynamicLibrary.hpp>
+        NonCopyable(NonCopyable const&) = delete;
+        NonCopyable& operator=(NonCopyable const&) = delete;
 
-#include <nail/Debug/Assert.hpp>
-#include <nail/Debug/Tee.hpp>
-#include <nail/Debug/TodoBefore.hpp>
+        virtual ~NonCopyable() = default;
+    };
 
-#include <nail/Event/EventQueue.hpp>
-#include <nail/Event/EventSubscriber.hpp>
-#include <nail/Event/EventDispatcher.hpp>
+    class NonMovable
+    {
+    public:
+        NonMovable() noexcept = default;
 
-#include <nail/Log/Logger.hpp>
-#include <nail/Log/Writer.hpp>
-#include <nail/Log/ConsoleWriter.hpp>
-#include <nail/Log/FileWriter.hpp>
+        NonMovable(NonMovable&&) = delete;
+        NonMovable& operator=(NonMovable&&) = delete;
 
-#include <nail/Signal/Signal.hpp>
-#include <nail/Signal/Listener.hpp>
+        virtual ~NonMovable() = default;
+    };
+}
 
-#include <nail/StrongType/NamedType.hpp>
-#include <nail/StrongType/Ranged.hpp>
-
-#endif // NAIL_HPP
+#endif // NAIL_NONCOPYABLE_HPP
 /**
  * Copyright (C) 2020-2023 Gaétan Jalin
  *
