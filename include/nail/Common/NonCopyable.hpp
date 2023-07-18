@@ -1,7 +1,7 @@
 // NonCopyable.hpp
 // 6 Jul 2023
 // Gaétan "Gad" Jalin
-// See end of file for complete licence description
+// See end of file for complete license description
 #ifndef NAIL_NONCOPYABLE_HPP
 #define NAIL_NONCOPYABLE_HPP
 

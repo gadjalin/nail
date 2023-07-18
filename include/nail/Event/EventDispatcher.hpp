@@ -1,7 +1,7 @@
 // EventDispatcher.hpp
 // Gaétan "Gad" Jalin
 // 16 Jun 2023
-// See end of file for complete licence description
+// See end of file for complete license description
 #ifndef NAIL_EVENTDISPATCHER_HPP
 #define NAIL_EVENTDISPATCHER_HPP
 

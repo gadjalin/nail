@@ -1,7 +1,7 @@
 // Observer.hpp
 // Gaétan "Gad" Jalin
 // 29 Jul 2021
-// See end of file for complete licence description
+// See end of file for complete license description
 #ifndef NAIL_OBSERVER_HPP
 #define NAIL_OBSERVER_HPP
 

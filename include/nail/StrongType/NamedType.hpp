@@ -1,7 +1,7 @@
 // NamedType.hpp
 // Gaétan "Gad" Jalin
 // 11 May 2022
-// See end of file for complete licence description
+// See end of file for complete license description
 #ifndef NAIL_NAMEDTYPE_HPP
 #define NAIL_NAMEDTYPE_HPP
 

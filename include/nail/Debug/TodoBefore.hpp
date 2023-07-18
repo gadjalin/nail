@@ -1,7 +1,7 @@
 // TodoBefore.hpp
 // 7 May 2022
 // Gaétan "Gad" Jalin
-// See end of file for complete licence description
+// See end of file for complete license description
 #ifndef NAIL_TODOBEFORE_HPP
 #define NAIL_TODOBEFORE_HPP
 

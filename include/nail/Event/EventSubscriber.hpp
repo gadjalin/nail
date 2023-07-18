@@ -1,7 +1,7 @@
 // EventSubscriber.hpp
 // Gaétan "Gad" Jalin
 // 2 May 2023
-// See end of file for complete licence description
+// See end of file for complete license description
 #ifndef NAIL_EVENTSUBSCRIBER_HPP
 #define NAIL_EVENTSUBSCRIBER_HPP
 

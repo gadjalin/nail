@@ -1,7 +1,7 @@
 // DynamicLibrary.hpp
 // 9 Oct 2021
 // Gaétan "Gad" Jalin
-// See end of file for complete licence description
+// See end of file for complete license description
 #ifndef NAIL_DYNAMICLIBRARY_HPP
 #define NAIL_DYNAMICLIBRARY_HPP
 

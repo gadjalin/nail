@@ -1,7 +1,7 @@
 // version.hpp
 // 21 May 2023
 // Gaétan "Gad" Jalin
-// See end of file for complete licence description
+// See end of file for complete license description
 #ifndef NAIL_VERSION_HPP
 #define NAIL_VERSION_HPP
 

@@ -1,7 +1,7 @@
 // Ranged.hpp
 // 1 Apr 2021
 // Gaétan "Gad" Jalin
-// See end of file for complete licence description
+// See end of file for complete license description
 #ifndef NAIL_RANGED_HPP
 #define NAIL_RANGED_HPP
 

@@ -1,7 +1,7 @@
 // Signal.hpp
 // Gaétan "Gad" Jalin
 // 6 Feb 2021
-// See end of file for complete licence description
+// See end of file for complete license description
 #ifndef NAIL_SIGNAL_HPP
 #define NAIL_SIGNAL_HPP
 

@@ -1,7 +1,7 @@
 // Logger.hpp
 // 1 Dec 2020
 // Gaétan "Gad" Jalin
-// See end of file for complete licence description
+// See end of file for complete license description
 #ifndef NAIL_LOGGER_HPP
 #define NAIL_LOGGER_HPP
 
