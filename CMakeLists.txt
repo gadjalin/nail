@@ -80,6 +80,7 @@ TARGET_SOURCES(nail PRIVATE
 
                ${CPP_DIR}/Common/DynamicLibrary.cpp
                ${CPP_DIR}/Common/System.cpp
+               ${CPP_DIR}/Common/Random.cpp
 
                ${CPP_DIR}/Debug/Assert.cpp
 

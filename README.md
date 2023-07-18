@@ -42,6 +42,7 @@ Nail currently features the following:
  - Strong Types [for strong interfaces](https://www.fluentcpp.com/2016/12/08/strong-types-for-strong-interfaces/)
     - Additionaly, **Ranged** Numerical values, when you only accept values in a specific range
  - **Shared Library** management
+ - **Random Number Generator** Utility
  - **System Info** Utilities (Memory, OS, Architecture...)
 
 ## Coming Soon
@@ -50,7 +51,8 @@ Nail currently features the following:
  - Custom **Memory Management**
  - **Time/Date/Chrono** Utilities
  - **Math** Utilities
- - **Random Number Generator** Utility
+ - Improvements to the **Random Number Generator** Utility
+ - **Statistics** Library
  - Probably more uninteresting stuff...
 
 ## Installation
