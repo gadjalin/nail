@@ -5,6 +5,10 @@
 #ifndef NAIL_DEFINES_HPP
 #define NAIL_DEFINES_HPP
 
+#if !(defined(_DEBUG) || defined(NDEBUG))
+    #error "Either _DEBUG or NDEBUG must be defined!"
+#endif
+
 // Utilities
 #define NAIL_BIT(shift) (1 << shift)
 
@@ -18,17 +22,25 @@
 // Note: The CMake files have not been made to handle DLL yet, but leaves the
 // door open
 #if defined(_WIN32) && defined(NAIL_BUILD_DLL)
+
     #define NAIL_API __declspec(dllexport)
-    #define NAIL_HIDDEN
+    #define NAIL_INTERNAL
+
 #elif defined(_WIN32) && defined(NAIL_LINK_DLL)
+
     #define NAIL_API __declspec(dllimport)
-    #define NAIL_HIDDEN
+    #define NAIL_INTERNAL
+
 #elif __GNUC__ >= 4 || defined(__clang__)
+
     #define NAIL_API __attribute__((visibility("default")))
-    #define NAIL_HIDDEN __attribute__((visibility("hidden")))
+    #define NAIL_INTERNAL __attribute__((visibility("hidden")))
+
 #else
+
     #define NAIL_API
-    #define NAIL_HIDDEN
+    #define NAIL_INTERNAL
+
 #endif // DLL/SO symbol visibility
 
 #endif // NAIL_DEFINES_HPP

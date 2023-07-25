@@ -6,32 +6,50 @@
 #define NAIL_PLATFORM_HPP
 
 // Platform detection
-#if defined(_WIN64) // Windows 64bit
-    #define NAIL_PLATFORM_WINDOWS
-//    #ifdef _MSC_VER
-//        #pragma warning(disable: 4251)
-//    #endif
+#if defined(_WIN32) // Windows
+
+    #if defined(_WIN64)
+        #define NAIL_PLATFORM_WINDOWS
+    #else
+        #error "32bit platforms are not supported!"
+    #endif
+
 #elif defined(__ANDROID__) // Android
+
     #define NAIL_PLATFORM_ANDROID
-    #error "Android platform not supported !"
-#elif defined(__linux__) && (defined(__x86_64__) || defined(__aarch64__)) // Linux 64bit
+    #error "Android platform not supported!"
+
+#elif defined(__linux__) && (defined(__x86_64__) || defined(__aarch64__)) // Linux
+
     #define NAIL_PLATFORM_LINUX
-#elif defined(__APPLE__) || defined(__MACH__) // Apple
+
+#elif defined(__APPLE__) && defined(__MACH__) // Mac/iPhone
+
     #include <TargetConditionals.h>
-    #if TARGET_RT_64_BIT == 0
-        #error "32-bit platforms are not supported !"
-    #elif TARGET_OS_MAC == 1
-        #if TARGET_OS_IPHONE == 1
-            #define NAIL_PLATFORM_IPHONE
-            #error "iPhone platform not supported !"
-        #else
+
+    #if TARGET_RT_64_BIT == 1
+        #if TARGET_OS_OSX
+
             #define NAIL_PLATFORM_MACOS
+
+        #elif TARGET_OS_IPHONE
+
+            #define NAIL_PLATFORM_IPHONE
+            #error "iOs platform not supported!"
+
+        #else
+
+            #error "Unsupported Apple platform"
+
         #endif
     #else
-        #error "Unsupported Apple platform"
+        #error "32bit platforms are not supported!"
     #endif
+
 #else
-    #error "32-bit platforms are not supported !"
+
+    #error "Unsupported platform!"
+
 #endif // Platform detection
 
 #endif // NAIL_PLATFORM_HPP
