@@ -16,9 +16,12 @@ namespace nail
     class NamedType
     {
     public:
+        using ValueType = Underlying;
+
         Underlying& get() noexcept;
         Underlying const& get() const noexcept;
 
+        NamedType() = default;
         explicit NamedType(Underlying const& value);
         template<typename T = Underlying, typename = typename std::enable_if_t<!std::is_reference_v<T> > >
         explicit NamedType(Underlying&& value);
