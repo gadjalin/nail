@@ -14,34 +14,20 @@
         #error "32bit platforms are not supported!"
     #endif
 
-#elif defined(__ANDROID__) // Android
-
-    #define NAIL_PLATFORM_ANDROID
-    #error "Android platform not supported!"
-
-#elif defined(__linux__) && (defined(__x86_64__) || defined(__aarch64__)) // Linux
-
-    #define NAIL_PLATFORM_LINUX
-
-#elif defined(__APPLE__) && defined(__MACH__) // Mac/iPhone
+#elif defined(__APPLE__) && defined(__MACH__) // MacOS
 
     #include <TargetConditionals.h>
 
-    #if TARGET_RT_64_BIT == 1
-        #if TARGET_OS_OSX
+    #if TARGET_RT_64_BIT == 1 && TARGET_OS_OSX == 1
+        #define NAIL_PLATFORM_MACOS
+    #else
+        #error "32bit platforms are not supported!"
+    #endif
 
-            #define NAIL_PLATFORM_MACOS
+#elif defined(__linux__) // Linux
 
-        #elif TARGET_OS_IPHONE
-
-            #define NAIL_PLATFORM_IPHONE
-            #error "iOs platform not supported!"
-
-        #else
-
-            #error "Unsupported Apple platform"
-
-        #endif
+    #if defined(__x86_64__) || defined(__aarch64__)
+        #define NAIL_PLATFORM_LINUX
     #else
         #error "32bit platforms are not supported!"
     #endif
