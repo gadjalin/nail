@@ -44,14 +44,14 @@ ELSE()
 ENDIF()
 
 SET_TARGET_PROPERTIES(nail PROPERTIES
-                      OUTPUT_NAME nail
-                      VERSION ${NAIL_VERSION}
-                      SOVERSION ${NAIL_VERSION_MAJOR}
-                      POSITION_INDEPENDENT_CODE ON
-                      CXX_STANDARD 17
-                      CXX_STANDARD_REQUIRED ON
-                      CXX_EXTENSIONS OFF
-                      FOLDER "Nail")
+    OUTPUT_NAME nail
+    VERSION ${NAIL_VERSION}
+    SOVERSION ${NAIL_VERSION_MAJOR}
+    POSITION_INDEPENDENT_CODE ON
+    CXX_STANDARD 17
+    CXX_STANDARD_REQUIRED ON
+    CXX_EXTENSIONS OFF
+    FOLDER "Nail")
 
 SET(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 SET(HPP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include/nail")
@@ -61,48 +61,42 @@ SET(DEPS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/deps")
 #TARGET_PRECOMPILE_HEADERS(nail PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:nailpch.hpp>")
 
 TARGET_COMPILE_DEFINITIONS(nail PRIVATE
-                           $<$<CONFIG:Release>:NDEBUG>)
+    $<$<CONFIG:Debug>:_DEBUG>
+    $<$<CONFIG:Release>:NDEBUG>)
 
 TARGET_INCLUDE_DIRECTORIES(nail PUBLIC
-                           "${INCLUDE_DIR}"
-                           "${DEPS_DIR}/fmt/include"
-                           "${PROJECT_BINARY_DIR}")
-
-#TARGET_INCLUDE_DIRECTORIES(nail PRIVATE
-#                           "${DEPS_DIR}/backward-cpp")
+    "${INCLUDE_DIR}"
+    "${DEPS_DIR}/fmt/include"
+    "${PROJECT_BINARY_DIR}")
 
 TARGET_INCLUDE_DIRECTORIES(nail SYSTEM PRIVATE
-                           $<$<PLATFORM_ID:Linux,Darwin>:/usr/include>
-                           $<$<PLATFORM_ID:Linux,Darwin>:/usr/local/include>)
+    $<$<PLATFORM_ID:Linux,Darwin>:/usr/include>
+    $<$<PLATFORM_ID:Linux,Darwin>:/usr/local/include>)
 
 TARGET_SOURCES(nail PRIVATE
-               ${CPP_DIR}/version.cpp
+    ${CPP_DIR}/version.cpp
 
-               ${CPP_DIR}/Common/DynamicLibrary.cpp
-               ${CPP_DIR}/Common/System.cpp
+    ${CPP_DIR}/Common/DynamicLibrary.cpp
+    ${CPP_DIR}/Common/System.cpp
+    ${CPP_DIR}/Common/Random.cpp
 
-               ${CPP_DIR}/Debug/Assert.cpp
+    ${CPP_DIR}/Debug/Assert.cpp
 
-               ${CPP_DIR}/Log/Logger.cpp
-               ${CPP_DIR}/Log/ConsoleWriter.cpp
-               ${CPP_DIR}/Log/FileWriter.cpp
-               )
+    ${CPP_DIR}/Log/Logger.cpp
+    ${CPP_DIR}/Log/ConsoleWriter.cpp
+    ${CPP_DIR}/Log/FileWriter.cpp
+    )
 
 TARGET_LINK_DIRECTORIES(nail PRIVATE
-                        $<$<PLATFORM_ID:Linux,Darwin>:/usr/lib>
-                        $<$<PLATFORM_ID:Linux,Darwin>:/usr/local/lib>
-                        )
-
-# Add backward-cpp to search paths
-#LIST(APPEND CMAKE_PREFIX_PATH ${DEPS_DIR}/backward-cpp)
-#FIND_PACKAGE(Backward REQUIRED)
+    $<$<PLATFORM_ID:Linux,Darwin>:/usr/lib>
+    $<$<PLATFORM_ID:Linux,Darwin>:/usr/local/lib>
+    )
 
 TARGET_LINK_LIBRARIES(nail PRIVATE
-                      fmt
-#                      Backward::Backward
+    fmt
 
-                      Threads::Threads
-                      ${CMAKE_DL_LIBS}
-                      $<$<PLATFORM_ID:Windows>:version>
-                      )
+    Threads::Threads
+    ${CMAKE_DL_LIBS}
+    $<$<PLATFORM_ID:Windows>:version>
+    )
 

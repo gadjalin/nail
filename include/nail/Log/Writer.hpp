@@ -1,7 +1,7 @@
 // Writer.hpp
 // 27 Apr 2021
 // Gaétan "Gad" Jalin
-// See end of file for complete licence description
+// See end of file for complete license description
 #ifndef NAIL_WRITER_HPP
 #define NAIL_WRITER_HPP
 

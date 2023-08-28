@@ -20,7 +20,7 @@
 // Tee.hpp
 // 31 Aug 2020
 // Gaétan "Gad" Jalin
-// See end of file for complete licence description
+// See end of file for complete license description
 #ifndef NAIL_TEE_HPP
 #define NAIL_TEE_HPP
 

@@ -2,6 +2,7 @@
 
 .git/
 .cache/
+.archives/
 
 # Projects
 
@@ -34,4 +35,5 @@ obj/
 *.vim
 
 compile_commands.json
+.vimspector.json
 

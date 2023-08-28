@@ -1,7 +1,7 @@
 // Assert.hpp
 // 11 Mar 2021
 // Gaétan "Gad" Jalin
-// See end of file for complete licence description
+// See end of file for complete license description
 #ifndef NAIL_ASSERT_HPP
 #define NAIL_ASSERT_HPP
 

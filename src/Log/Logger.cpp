@@ -88,7 +88,7 @@ namespace nail
     std::shared_ptr<Logger> Logger::TryCreate(std::string const& id, Level const logLevel)
     {
         if (s_loggers.find(id) != s_loggers.end())
-            throw std::runtime_error(fmt::format("Logger with name {} already exists!", id));
+            throw std::runtime_error(fmt::format("Logger with name \"{}\" already exists!", id));
 
         auto logger = std::make_shared<Logger>(id, logLevel);
         s_loggers.emplace(id, logger);

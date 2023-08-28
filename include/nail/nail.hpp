@@ -14,6 +14,7 @@
 #include <nail/Common/Observer.hpp>
 #include <nail/Common/System.hpp>
 #include <nail/Common/DynamicLibrary.hpp>
+#include <nail/Common/Random.hpp>
 
 #include <nail/Debug/Assert.hpp>
 #include <nail/Debug/Tee.hpp>

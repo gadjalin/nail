@@ -1,7 +1,7 @@
 // Listener.hpp
 // Gaétan "Gad" Jalin
 // 6 Feb 2021
-// See end of file for complete licence description
+// See end of file for complete license description
 #ifndef NAIL_LISTENER_HPP
 #define NAIL_LISTENER_HPP
 
