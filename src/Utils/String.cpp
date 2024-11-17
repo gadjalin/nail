@@ -1,18 +1,17 @@
-// String.inl
+// String.cpp
 // 17 Nov 2024
 // Gaétan J.A.M Jalin
 // See end of file for complete license description
-template<typename InputIt>
-inline auto nail::join_all(InputIt first, InputIt last, std::string const& delimiter)
-    -> std::enable_if_t<std::is_same_v<typename std::iterator_traits<InputIt>::value_type, std::string>, std::string>
+#include "nail/Utils/String.hpp"
+
+namespace nail
 {
-    NAIL_DEBUG_ASSERT(first != last, "Cannot join an empty list of strings!");
-    return std::accumulate(std::next(first), last, *first,
-        [&delimiter](std::string const& lhs, std::string const& rhs) -> std::string
-        {
-            return join(lhs, rhs, delimiter);
-        });
+    std::string join(std::string const& lhs, std::string const& rhs, std::string const& delimiter)
+    {
+        return lhs + delimiter + rhs;
+    }
 }
+
 /**
  * Copyright (C) 2020-2024 Gaétan Jalin
  *
@@ -34,4 +33,3 @@ inline auto nail::join_all(InputIt first, InputIt last, std::string const& delim
  *
  *    3. This notice may not be removed or altered from any source distribution.
  **/
-

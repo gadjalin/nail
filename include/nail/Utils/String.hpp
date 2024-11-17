@@ -25,7 +25,7 @@ namespace nail
 
 #endif // NAIL_STRING_HPP
 /**
- * Copyright (C) 2020-2023 Gaétan Jalin
+ * Copyright (C) 2020-2024 Gaétan Jalin
  *
  * This software is provided 'as-is', without any express or implied
  * warranty.  In no event will the authors be held liable for any damages
@@ -45,3 +45,4 @@ namespace nail
  *
  *    3. This notice may not be removed or altered from any source distribution.
  **/
+

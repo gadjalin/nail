@@ -53,7 +53,7 @@ inline bool nail::compare_none_of(InputIt first, InputIt last, BinaryPred p)
 }
 
 /**
- * Copyright (C) 2020-2023 Gaétan Jalin
+ * Copyright (C) 2020-2024 Gaétan Jalin
  *
  * This software is provided 'as-is', without any express or implied
  * warranty.  In no event will the authors be held liable for any damages
