@@ -1,8 +1,10 @@
 #include "nail/Common/System.hpp"
 
+#include <fstream>
 #include <bitset>
 #include <csignal>
 #include <cstdlib>
+#include <cstring>
 
 #include "nail/platform.hpp"
 
@@ -10,6 +12,7 @@
     #include <lmcons.h>
 #elif defined(NAIL_PLATFORM_LINUX)
     #include <unistd.h>
+    #include <sys/utsname.h>
 #elif defined(NAIL_PLATFORM_MACOS)
     #include <unistd.h>
     #include <sys/utsname.h>

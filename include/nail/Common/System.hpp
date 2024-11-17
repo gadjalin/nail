@@ -6,6 +6,7 @@
 #define NAIL_SYSTEM_HPP
 
 #include <string>
+#include <cstdint>
 
 #include "nail/defines.hpp"
 

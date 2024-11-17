@@ -1,5 +1,6 @@
 #include "nail/Common/DynamicLibrary.hpp"
 
+#include <utility>
 #include <stdexcept>
 
 #include "nail/platform.hpp"

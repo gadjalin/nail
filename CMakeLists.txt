@@ -85,6 +85,8 @@ TARGET_SOURCES(nail PRIVATE
     ${CPP_DIR}/Log/Logger.cpp
     ${CPP_DIR}/Log/ConsoleWriter.cpp
     ${CPP_DIR}/Log/FileWriter.cpp
+
+    ${CPP_DIR}/Utils/String.cpp
     )
 
 TARGET_LINK_DIRECTORIES(nail PRIVATE
