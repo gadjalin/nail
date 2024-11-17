@@ -11,22 +11,22 @@
 namespace nail
 {
     template<typename InputIt, typename BinaryFn>
-    BinaryFn compare_each(InputIt first, InputIt last, BinaryFn f);
+    BinaryFn compare_each(InputIt first, InputIt const last, BinaryFn f);
 
     template<typename InputIt, typename BinaryPred>
-    std::pair<InputIt, InputIt> find_if_compare(InputIt first, InputIt last, BinaryPred p);
+    std::pair<InputIt, InputIt> find_if_compare(InputIt first, InputIt const last, BinaryPred p);
 
     template<typename InputIt, typename BinaryPred>
-    std::pair<InputIt, InputIt> find_if_not_compare(InputIt first, InputIt last, BinaryPred p);
+    std::pair<InputIt, InputIt> find_if_not_compare(InputIt first, InputIt const last, BinaryPred p);
 
     template<typename InputIt, typename BinaryPred>
-    bool compare_all_of(InputIt first, InputIt last, BinaryPred p);
+    bool compare_all_of(InputIt first, InputIt const last, BinaryPred p);
 
     template<typename InputIt, typename BinaryPred>
-    bool compare_any_of(InputIt first, InputIt last, BinaryPred p);
+    bool compare_any_of(InputIt first, InputIt const last, BinaryPred p);
 
     template<typename InputIt, typename BinaryPred>
-    bool compare_none_of(InputIt first, InputIt last, BinaryPred p);
+    bool compare_none_of(InputIt first, InputIt const last, BinaryPred p);
 }
 
 #include "Algorithm.inl"

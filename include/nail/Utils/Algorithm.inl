@@ -3,7 +3,7 @@
 // Gaétan J.A.M. Jalin
 // See end of file for complete license description
 template<typename InputIt, typename BinaryFn>
-inline BinaryFn nail::compare_each(InputIt first, InputIt last, BinaryFn f)
+inline BinaryFn nail::compare_each(InputIt first, InputIt const last, BinaryFn f)
 {
     for (; first != last; ++first)
         for (auto against = std::next(first); against != last; ++against)
@@ -13,7 +13,7 @@ inline BinaryFn nail::compare_each(InputIt first, InputIt last, BinaryFn f)
 }
 
 template<typename InputIt, typename BinaryPred>
-inline std::pair<InputIt, InputIt> nail::find_if_compare(InputIt first, InputIt last, BinaryPred p)
+inline std::pair<InputIt, InputIt> nail::find_if_compare(InputIt first, InputIt const last, BinaryPred p)
 {
     for (; first != last; ++first)
         for (auto against = std::next(first); against != last; ++against)
@@ -24,7 +24,7 @@ inline std::pair<InputIt, InputIt> nail::find_if_compare(InputIt first, InputIt 
 }
 
 template<typename InputIt, typename BinaryPred>
-inline std::pair<InputIt, InputIt> nail::find_if_not_compare(InputIt first, InputIt last, BinaryPred p)
+inline std::pair<InputIt, InputIt> nail::find_if_not_compare(InputIt first, InputIt const last, BinaryPred p)
 {
     for (; first != last; ++first)
         for (auto against = std::next(first); against != last; ++against)
@@ -35,19 +35,19 @@ inline std::pair<InputIt, InputIt> nail::find_if_not_compare(InputIt first, Inpu
 }
 
 template<typename InputIt, typename BinaryPred>
-inline bool nail::compare_all_of(InputIt first, InputIt last, BinaryPred p)
+inline bool nail::compare_all_of(InputIt first, InputIt const last, BinaryPred p)
 {
     return find_if_not_compare(first, last, p).first == last;
 }
 
 template<typename InputIt, typename BinaryPred>
-inline bool nail::compare_any_of(InputIt first, InputIt last, BinaryPred p)
+inline bool nail::compare_any_of(InputIt first, InputIt const last, BinaryPred p)
 {
     return find_if_compare(first, last, p).first != last;
 }
 
 template<typename InputIt, typename BinaryPred>
-inline bool nail::compare_none_of(InputIt first, InputIt last, BinaryPred p)
+inline bool nail::compare_none_of(InputIt first, InputIt const last, BinaryPred p)
 {
     return find_if_compare(first, last, p).first == last;
 }
