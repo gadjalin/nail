@@ -27,6 +27,7 @@
 #include <iostream>
 #include <fstream>
 #include <type_traits>
+#include <functional>
 #include <utility>
 
 namespace nail
